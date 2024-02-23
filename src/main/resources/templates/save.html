@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<script 
+  		src="https://code.jquery.com/jquery-latest.min.js"
+    >
+  	</script>
+	<meta charset="UTF-8">
+	<title>save member</title>
+</head>
+<body>
+	<h2>save member</h2>
+	<form action="/member/save" method="post">
+		이메일  :  <input type="text" name="email" id="email" onkeyup="emailCheck()">  <span id="check-result"></span> <br> 
+		비밀번호:  <input type="password" name="password"> <br> 
+		이름   :  <input type="text" name="name"> <br> 
+		<input type="submit" value="회원가입">
+	</form>
+</body>
+<script th:inline="javascript">
+	const emailCheck = () => {
+		const email = document.getElementById("email").value;
+		const checkResult = document.getElementById("check-result");
+		console.log("입력값: ", email);
+		$.ajax({
+			// 요청방식: post, url:"email-check", 데이터: 이메일
+			type: "post",
+			url: "/member/email-check",
+			data: {
+				"email": email
+			},
+			success: function(res){
+				console.log("요청성공", res);
+				if(res == "ok"){
+					console.log("사용가능 이메일");
+					checkResult.style.color="green"
+					checkResult.innerHTML = "사용가능한 이메일";
+				} else {
+					console.log("사용중인 이메일")
+					checkResult.style.color="red"
+					checkResult.innerHTML = "사용중인 이메일";
+				}
+			},
+			error: function(err){
+				console.log("에러발생", err);
+			}
+		});
+	}
+</script>
+</html>
