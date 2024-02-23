@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 //@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@ToString
 @Data
 public class MemberDTO {
 	private Long id;

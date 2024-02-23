@@ -32,7 +32,6 @@ public class MemberController {
 
 	@PostMapping("/member/save")
 	public String save(@ModelAttribute MemberDTO memberDTO) {
-		// TODO: process POST request
 //		System.out.println("save method");
 //		System.out.println("MemberDTO: " + memberDTO);
 
